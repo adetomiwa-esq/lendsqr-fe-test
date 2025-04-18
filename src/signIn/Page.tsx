@@ -3,10 +3,11 @@ import './signIn.scss'
 import { Link } from 'react-router-dom'
 import banner from "../assets/sign-in.svg";
 import logo from '../assets/Group.svg'
+import { useState } from 'react';
 
 function Page() {
 
-    
+    const [displayPassword, setDisplayPassword] = useState<boolean>(false)
   return (
     <main className="sign-in">
         <section className="left">
@@ -22,8 +23,8 @@ function Page() {
                     <input type="text" name="" placeholder='Email' id="" />
                 </div>
                 <div className="input-container password-cont">
-                    <input type={'password'} placeholder='Password' name="" id="" />
-                    <span className="toggle">'SHOW'</span>
+                    <input type={displayPassword ? 'text' : 'password'} placeholder='Password' name="" id="" />
+                    <span className="toggle" onClick={() => setDisplayPassword(prev => !prev)}>{displayPassword ? 'HIDE' : 'SHOW'}</span>
                 </div>
 
                 <Link to="" className='forgot-pass'>FORGOT PASSWORD?</Link>
