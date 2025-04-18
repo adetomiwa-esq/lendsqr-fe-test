@@ -1,0 +1,57 @@
+@import '../variables';
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    color: $primary-color;
+    height: 100px;
+    box-shadow: 3px 3px 3px #0000000A;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    .search-container {
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        border: 1px solid #213F7D;
+        margin-left: 140px;
+        width: 400px;
+
+        input {
+            height: 40px;
+            border: none;
+            outline: none;
+            width: calc(100% - 56px);
+            padding: 0 6px;
+        }
+
+        button {
+            background-color: $sec-color;
+            border-radius: 0;
+            border: none;
+            height: 40px;
+            width: 56px;
+            color: white;
+            font-weight: 600;
+        }
+    }
+
+    .nav-icons {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        img {
+            border-radius: 50%;
+        }
+
+        .doc-link {
+            color: $primary-color;
+        }
+    }
+}
