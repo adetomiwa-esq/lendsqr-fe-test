@@ -1,0 +1,49 @@
+@import '../variables';
+
+
+.sidebar {
+    height: 100svh;
+    padding-top: 120px;
+    width: 283px;
+    box-shadow: 3px 3px #0000000A;
+    background-color: white;
+    z-index: 49;
+    position: fixed;
+    overflow-y: scroll;
+
+    .links-header {
+        color: $text-color;
+        margin-bottom: 8px;
+        margin-top: 12px;
+        font-size: 12px;
+        padding-left: 28px;
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding-left: 28px;
+        text-decoration: none;
+        height: 40px;
+        position: relative;
+
+        
+    }
+
+    .nav-link:hover::after {
+        content: "";
+        background-color: $sec-color;
+        height: 100%;
+        width: 100%;
+        z-index: 0;
+        opacity: 6%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .nav-link:hover{
+        border-left: 3px solid $sec-color;
+    }
+}
