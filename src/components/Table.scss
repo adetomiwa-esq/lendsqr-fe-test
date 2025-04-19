@@ -1,0 +1,36 @@
+.table-title {
+    display: flex;
+    align-items: center;
+}
+
+.table-container {
+    padding: 20px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #0000000A;
+    border: 1px solid #213F7D0F;
+    border-radius: 4px;
+}
+
+.table {
+    table-layout: auto;
+    border-collapse: collapse;
+    // border: 1px solid #D1D5DB;
+    width: 100%;
+    font-size: 12px;
+
+    .tb {
+        
+    }
+
+    .tb-row:nth-child(1){
+        border-top: none;
+    }
+    
+    .tb-row {
+        border-top: 1px solid #213F7D1A;
+
+        td {
+            padding: 20px 0;
+        }
+    }
+}
