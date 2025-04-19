@@ -3,6 +3,7 @@
 .table-title {
     display: flex;
     align-items: center;
+    gap: 2px;
 }
 
 .table-container {
@@ -11,6 +12,7 @@
     box-shadow: 5px 5px 5px #0000000A;
     border: 1px solid #213F7D0F;
     border-radius: 4px;
+    position: relative;
 }
 
 .table {
@@ -19,6 +21,10 @@
     width: 100%;
     font-size: 12px;
     position: relative;
+
+    .table-head {
+        cursor: pointer;
+    }
 
     
 
@@ -81,4 +87,42 @@
         }
     }
 
+}
+
+.set-filter {
+    width: 270px;
+    border-radius: 4px;
+    display: none;
+    box-shadow: 10px 10px 10px #0000000A;
+    padding: 30px 20px;
+    background-color: white;
+    font-size: 14px;
+    color: $text-color;
+    position: absolute;
+    top: 5px;
+
+    .data-container {
+        margin-bottom: 10px;
+
+        label {
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        .data-field {
+            width: 100%;
+            border: 1px solid $primary-color;
+            border-radius: 8px;
+            height: 40px;
+            outline: none;
+            background-color: white;
+            font-size: 14px;
+            color: $text-color;
+            padding: 0 4px;
+        }
+    }
+}
+
+.display-modal {
+    display: block;
 }
