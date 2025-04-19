@@ -46,4 +46,20 @@
     .nav-link:hover{
         border-left: 3px solid $sec-color;
     }
+
+    .active::after {
+        content: "";
+        background-color: $sec-color;
+        height: 100%;
+        width: 100%;
+        z-index: 0;
+        opacity: 6%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .active{
+        border-left: 3px solid $sec-color;
+    }
 }

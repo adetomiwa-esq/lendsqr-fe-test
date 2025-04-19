@@ -2,6 +2,11 @@ import { useState } from 'react'
 import { ColumnDef, createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
 import { RiExpandUpDownLine } from 'react-icons/ri'
 import "./Table.scss"
+import { FaEllipsisVertical } from 'react-icons/fa6'
+import { Link } from 'react-router-dom'
+import { FiUserX } from 'react-icons/fi'
+import { GrUserExpert } from 'react-icons/gr'
+import { IoEyeOutline } from 'react-icons/io5'
 
 
 type User =  {
@@ -16,7 +21,7 @@ type User =  {
 
 const columnHelper = createColumnHelper<User>()
 
-const columns: ColumnDef<User, any>[] = [
+const columns: ColumnDef<User, undefined>[] = [
     columnHelper.accessor("organization", {
         cell: (info) => info.getValue(),
         header: () => (
@@ -86,7 +91,7 @@ function Table() {
             "status": 'Inactive'
         },
         {
-            "id": '019834',
+            "id": '039834',
             "organization": "",
             "username": 'Babatunde Gabriel',
             "email": 'babatundegabriel@gmail.com',
@@ -95,7 +100,7 @@ function Table() {
             "status": 'Inactive'
         },
         {
-            "id": '019834',
+            "id": '0198354',
             "organization": "",
             "username": 'Babatunde Gabriel',
             "email": 'babatundegabriel@gmail.com',
@@ -104,7 +109,7 @@ function Table() {
             "status": 'Inactive'
         },
         {
-            "id": '019834',
+            "id": '019534',
             "organization": "",
             "username": 'Babatunde Gabriel',
             "email": 'babatundegabriel@gmail.com',
@@ -113,7 +118,7 @@ function Table() {
             "status": 'Inactive'
         },
         {
-            "id": '019834',
+            "id": '019835',
             "organization": "",
             "username": 'Babatunde Gabriel',
             "email": 'babatundegabriel@gmail.com',
@@ -142,6 +147,22 @@ function Table() {
         getFilteredRowModel: getFilteredRowModel()
     })
 
+    const [userId, setUserId] = useState<string|undefined>("")
+
+    const body = document.querySelector('body')
+
+    body?.addEventListener('click', () => {
+        setUserId("")
+    })
+
+    function toggleUserEditModal(id: string | undefined){
+        if(id === userId){
+            setUserId("")
+        } else{
+            setUserId(id)
+        }
+    }
+        
     
   return (
     <div className='table-container'>
@@ -188,43 +209,39 @@ function Table() {
                                         </td>
                                     ))
                                 }
+
+                                <td className='ellipsis-container' onClick={(e) => {
+                                    e.stopPropagation()
+                                }}>
+                                    <FaEllipsisVertical onClick={() => {
+                                    
+                                    toggleUserEditModal(row.original.id)
+                                    }} className='ellipsis' />
+
+                                    {/* ******************* edit user status modal ********************* */}
+                                    <div className={`edit-user-status ${userId === row.original.id ? 'reveal-user-status-modal' : ''}`}>
+                                        <Link to={``}>
+                                            <span><IoEyeOutline /></span>
+                                            <span>View Details</span>
+                                        </Link>
+                                        <div>
+                                            <span><FiUserX /></span>
+                                            <span>Blacklist User</span>
+                                        </div>
+                                        <div>
+                                            <span><GrUserExpert /></span>
+                                            <span>Activate User</span>
+                                        </div>
+                                    </div>
+                                </td>
             </tr>
           ))}
         </tbody>
+
+        
       </table>
     </div>
   )
 }
 
 export default Table
-
-
-// {
-    //     accessorKey: "id", // Accesses `id` from the `User` type
-    //     header: "ID",
-    //   },
-    //   {
-    //     accessorKey: "name", // Accesses `name` from the `User` type
-    //     header: "Name",
-    //   },
-    //   {
-    //     accessorKey: "email", // Accesses `email` from the `User` type
-    //     header: "Email",
-    //   },
-    //   {
-    //     accessorKey: "dateJoined", // Accesses `email` from the `User` type
-    //     header: "Date Joined",
-    //   },
-    //   {
-    //     accessorKey: "phone", // Accesses `email` from the `User` type
-    //     header: "Phone",
-    //   },
-    //   {
-    //     accessorKey: "status", // Accesses `email` from the `User` type
-    //     header: "Status",
-    //   },
-    //   {
-    //     accessorKey: "organization", // Accesses `age` from the `User` type
-    //     header: "Age",
-    //     cell: (info) => <span>{info.getValue<number>()} years</span>,
-    //   }
