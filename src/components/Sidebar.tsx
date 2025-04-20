@@ -14,9 +14,9 @@ import { RiExchangeBoxLine } from 'react-icons/ri'
 import { BsFillJournalBookmarkFill } from 'react-icons/bs'
 import { IoHomeOutline } from 'react-icons/io5'
 
-function Sidebar() {
+function Sidebar({displaySideBar}) {
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${displaySideBar ? 'show-mobile-sidebar' :  ''}`}>
         <NavLink to="/" className="nav-link">
             <span><FaBriefcase /></span>
             <span>Switch Organization</span>
