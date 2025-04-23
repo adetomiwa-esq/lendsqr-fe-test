@@ -14,7 +14,11 @@ import { RiExchangeBoxLine } from 'react-icons/ri'
 import { BsFillJournalBookmarkFill } from 'react-icons/bs'
 import { IoHomeOutline } from 'react-icons/io5'
 
-function Sidebar({displaySideBar}) {
+interface Props {
+    displaySideBar: boolean
+}
+
+function Sidebar({displaySideBar}: Props) {
   return (
     <aside className={`sidebar ${displaySideBar ? 'show-mobile-sidebar' :  ''}`}>
         <NavLink to="/" className="nav-link">

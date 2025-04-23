@@ -1,5 +1,21 @@
 
-function PersonalInfo() {
+interface Props {
+    savedData: {
+    _id?: string;
+    company?: string,
+    username?: string;
+    email?: string;
+    registered?: string;
+    phone?: string;
+    status?: string;
+    gender?: string;
+    balance?: string}
+};
+
+function PersonalInfo({ savedData } : Props) {
+
+    
+    
   return (
     <section className="personal-info">
         <div className="info-sec">
@@ -8,15 +24,15 @@ function PersonalInfo() {
             <div className="boxes">
                 <div className="box">
                     <h4 className="sm-header">FULL NAME</h4>
-                    <p className="content">{`Grace Effiom`}</p>
+                    <p className="content">{savedData?.username}</p>
                 </div>
                 <div className="box">
                     <h4 className="sm-header">PHONE NUMBER</h4>
-                    <p className="content">{`07060780922`}</p>
+                    <p className="content">{savedData?.phone}</p>
                 </div>
                 <div className="box">
                     <h4 className="sm-header">EMAIL ADDRESS</h4>
-                    <p className="content">{`grace@gmail.com`}</p>
+                    <p className="content">{savedData?.email}</p>
                 </div>
                 <div className="box">
                     <h4 className="sm-header">BVN</h4>
@@ -24,7 +40,7 @@ function PersonalInfo() {
                 </div>
                 <div className="box">
                     <h4 className="sm-header">GENDER</h4>
-                    <p className="content">{`Female`}</p>
+                    <p className="content">{savedData?.gender}</p>
                 </div>
                 <div className="box">
                     <h4 className="sm-header">MARITAL STATUS</h4>
@@ -63,7 +79,7 @@ function PersonalInfo() {
                 </div>
                 <div className="box">
                     <h4 className="sm-header">OFFICIAL EMAIL</h4>
-                    <p className="content">{`Female`}</p>
+                    <p className="content">{savedData?.email}</p>
                 </div>
                 <div className="box">
                     <h4 className="sm-header">MONTHLY INCOME</h4>

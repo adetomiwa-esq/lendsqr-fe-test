@@ -2,5 +2,9 @@
 
 .users-page {
     color: $text-color;
-    padding: 0 20px 0 20px;
+    padding: 20px 30px 20px 30px;
+    width: 100%;
+    overflow-x: scroll;
+    min-height: 600px;
+    background-color: $bg-color;
 }

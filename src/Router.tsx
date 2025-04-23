@@ -11,7 +11,7 @@ const router = createBrowserRouter(
             <Route path="/dashboard" element={<MainLayout />}>
                 <Route path="users">
                     <Route path="" index element={<UsersPage />} />
-                    <Route path=":id" element={<UserDataPage />}/>
+                    <Route path="selected-user" element={<UserDataPage />}/>
                 </Route>
             </Route>
         </Route>

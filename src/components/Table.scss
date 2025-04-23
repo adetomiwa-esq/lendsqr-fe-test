@@ -6,13 +6,43 @@
     gap: 2px;
 }
 
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.75rem;
+    text-transform: capitalize;
+  
+    &.Active {
+      background-color: #e6ffed;
+      color: #27ae60;
+    }
+  
+    &.Inactive {
+      background-color: #8c92a6;
+      color: $text-color;
+    }
+  
+    &.Pending {
+      background-color: #fff9e6;
+      color: #f1c40f;
+    }
+  
+    &.Blacklisted {
+      background-color: #f9e6ff;
+      color: #9b59b6;
+    }
+  }
+  
+
 .table-container {
     padding: 20px;
     background-color: white;
-    box-shadow: 5px 5px 5px #0000000A;
+    box-shadow: 10px 10px 10px #0000000A;
     border: 1px solid #213F7D0F;
     border-radius: 4px;
     position: relative;
+    min-width: 800px;
 }
 
 .table {
@@ -125,4 +155,76 @@
 
 .display-modal {
     display: block;
+}
+
+.pagination-container {
+    margin: 16px 0;
+    display: flex;
+    justify-content: space-between;
+
+    .pagination-left {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        font-size: 10px;
+
+        select {
+            width: 80px;
+            font-size: 10px;
+            height: 30px;
+            border-radius: 4px;
+            background-color: #213F7D1A;
+            color: $primary-color;
+            font-weight: 500;
+            outline: none;
+            border: none;
+            padding: 0 5px;
+        }
+
+        span:nth-child(1) {
+            font-size: 14px;
+        }
+    }
+
+
+    .pagination-right {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .right-btn {
+        height: 24px;
+        width: 24px;
+        background-color: #213F7D1A;
+        border-radius: 0.25rem;
+        border: none;
+    }
+
+    .right-btn:disabled {
+        opacity: 0.5;
+    }
+
+    .left-btn {
+        height: 24px;
+        width: 24px;
+        border-radius: 0.25rem;
+        border: none;
+    }
+
+    .current {
+        color: $text-color;
+        font-weight: 500;
+    }
+
+    .not-current {
+        color: $text-color;
+        font-weight: 400;
+        opacity: 0.6;
+    }
+
+    .number {
+        border: none;
+        background-color: transparent;
+    }
 }

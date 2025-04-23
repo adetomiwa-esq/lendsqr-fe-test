@@ -1,19 +1,21 @@
 import { useState } from 'react'
-import { ColumnDef, createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table'
+import { ColumnDef, createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getSortedRowModel,getPaginationRowModel, useReactTable } from '@tanstack/react-table'
 import "./Table.scss"
 import { FaEllipsisVertical } from 'react-icons/fa6'
-import { Link } from 'react-router-dom'
 import { FiUserX } from 'react-icons/fi'
 import { GrUserExpert } from 'react-icons/gr'
 import { IoEyeOutline, IoFilter } from 'react-icons/io5'
+import usersData from '../../data/db.json'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { useNavigate } from "react-router-dom";
 
 
 type User =  {
-    id?: string;
-    organization?: string,
+    _id?: string;
+    company?: string,
     username?: string;
     email?: string;
-    dateJoined?: string;
+    registered?: string;
     phone?: string;
     status?: string;
 }
@@ -21,7 +23,7 @@ type User =  {
 const columnHelper = createColumnHelper<User>()
 
 const columns: ColumnDef<User, undefined>[] = [
-    columnHelper.accessor("organization", {
+    columnHelper.accessor("company", {
         cell: (info) => info.getValue(),
         header: () => (
             <span className="table-title">
@@ -58,8 +60,24 @@ const columns: ColumnDef<User, undefined>[] = [
     }),
 
 
-    columnHelper.accessor("dateJoined", {
-        cell: (info) => info.getValue(),
+    columnHelper.accessor("registered", {
+        cell: (info) => {
+            const status = info.getValue() as string | undefined;
+
+            if (!status) return <span>Invalid date</span>;
+
+            const month = getMonth(status.slice(5, 7));
+            const day = status.slice(8, 10);
+            const year = status.slice(0, 4);
+            const time = status.slice(11, 16); // assuming time exists like "13:45"
+            const meridian = Number(status.slice(11, 13)) > 11 ? "PM" : "AM";
+
+            return (
+                <span>
+                  {month} {day}, {year} {time} {meridian}
+                </span>
+            );
+        },
         header: () => (
             <span className="table-title">
                 DATE JOINED <IoFilter />
@@ -68,7 +86,14 @@ const columns: ColumnDef<User, undefined>[] = [
     }),
 
     columnHelper.accessor("status", {
-        cell: (info) => info.getValue(),
+        cell: (info) => {
+            const status = info.getValue()
+            return (
+              <span className={`status-badge ${status}`}>
+                {status}
+              </span>
+            )
+          },
         header: () => (
             <span className="table-title">
                 STATUS <IoFilter />
@@ -77,73 +102,82 @@ const columns: ColumnDef<User, undefined>[] = [
     }),
 ]
 
+function getMonth (x: string) {
+    let month = ""
+
+switch (x) {
+    case '01':
+        month = "Jan";
+        break;
+    case '02':
+        month = "Feb";
+        break;
+    case '03':
+        month = "Mar";
+        break;
+    case '04':
+        month = "Apr";
+        break;
+    case '05':
+        month = "May";
+        break;
+    case '06':
+        month = "June";
+        break;
+    case '07':
+        month = "July";
+        break;
+    case '08':
+        month = "Aug";
+        break;
+    case '09':
+        month = "Sept";
+        break;
+    case '10':
+        month = "Oct";
+        break;
+    case '11':
+        month = "Nov";
+        break;
+  case '12':
+    month = "Dec";
+    break;
+  default:
+    console.log("Other Month");
+}
+
+return month
+}
+
+const saveDataToLocalStorage = (key: string, data: object | undefined) => {
+    localStorage.setItem(key, JSON.stringify(data));
+  };
+  
+
 function Table() {
+    const navigate = useNavigate()
 
-    const tableData: User[] = [
-        {
-            "id": '019834',
-            "organization": "",
-            "username": 'Babatunde Gabriel',
-            "email": 'babatundegabriel@gmail.com',
-            "dateJoined": 'Jan 6 2024',
-            "phone": '+234 126813804',
-            "status": 'Inactive'
-        },
-        {
-            "id": '039834',
-            "organization": "",
-            "username": 'Babatunde Gabriel',
-            "email": 'babatundegabriel@gmail.com',
-            "dateJoined": 'Jan 6 2024',
-            "phone": '+234 126813804',
-            "status": 'Inactive'
-        },
-        {
-            "id": '0198354',
-            "organization": "",
-            "username": 'Babatunde Gabriel',
-            "email": 'babatundegabriel@gmail.com',
-            "dateJoined": 'Jan 6 2024',
-            "phone": '+234 126813804',
-            "status": 'Inactive'
-        },
-        {
-            "id": '019534',
-            "organization": "",
-            "username": 'Babatunde Gabriel',
-            "email": 'babatundegabriel@gmail.com',
-            "dateJoined": 'Jan 6 2024',
-            "phone": '+234 126813804',
-            "status": 'Inactive'
-        },
-        {
-            "id": '019835',
-            "organization": "",
-            "username": 'Babatunde Gabriel',
-            "email": 'babatundegabriel@gmail.com',
-            "dateJoined": 'Jan 6 2024',
-            "phone": '+234 126813804',
-            "status": 'Active'
-        },
-    ]
+    const [data] = useState(usersData)
 
-    const [data, setData] = useState([...tableData])
-
-    // const [sorting, setSorting] = useState([])
     const [globalFilter, setGlobalFilter] = useState("")
+    const [pagination, setPagination] = useState({
+        pageIndex: 0,
+        pageSize: 10,
+      });
 
     const table = useReactTable({
         data,
         columns,
         state: {
-            // sorting,
-            globalFilter
+            globalFilter,
+            pagination,
         },
+        onPaginationChange: setPagination,
         getCoreRowModel: getCoreRowModel(),
-        // onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),
         onGlobalFilterChange: setGlobalFilter,
-        getFilteredRowModel: getFilteredRowModel()
+        getFilteredRowModel: getFilteredRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
     })
 
     const [userId, setUserId] = useState<string|undefined>("")
@@ -167,10 +201,14 @@ function Table() {
     function showFilterModal(){
         setDisplayFilterModal(true)
     }
+
+    
         
     
   return (
-    <div className='table-container'>
+    <div className="">
+
+<div className='table-container'>
         <table className="table">
         <thead className="bg-[#F3F3F3]">
           {table.getHeaderGroups().map((headerGroup) => (
@@ -203,14 +241,9 @@ function Table() {
         <tbody className="tb ">
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id} className='tb-row hover:bg-gray-50 border-b border-b-[#E4E4E4]'>
-              {/* {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="border border-gray-300 px-4 py-2">
-                  {cell.renderCell()}
-                </td>
-              ))} */}
               {
                                     row.getVisibleCells().map((cell) => (
-                                        <td key={cell.id} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <td key={cell.id} className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500`}>
                                             {
                                                 flexRender(cell.column.columnDef.cell, cell.getContext())
                                             }
@@ -223,15 +256,20 @@ function Table() {
                                 }}>
                                     <FaEllipsisVertical onClick={() => {
                                     
-                                    toggleUserEditModal(row.original.id)
+                                    toggleUserEditModal(row.original._id)
                                     }} className='ellipsis' />
 
                                     {/* ******************* edit user status modal ********************* */}
-                                    <div className={`edit-user-status ${userId === row.original.id ? 'reveal-user-status-modal' : ''}`}>
-                                        <Link to={``}>
+                                    <div className={`edit-user-status ${userId === row.original._id ? 'reveal-user-status-modal' : ''}`}>
+                                        <div onClick={() => {
+
+                                            const selectedUser = usersData.find(x => x._id === row.original._id)
+                                            saveDataToLocalStorage('userData', selectedUser)
+                                            navigate('/dashboard/users/selected-user')
+                                        }}>
                                             <span><IoEyeOutline /></span>
                                             <span>View Details</span>
-                                        </Link>
+                                        </div>
                                         <div>
                                             <span><FiUserX /></span>
                                             <span>Blacklist User</span>
@@ -248,6 +286,7 @@ function Table() {
 
         
       </table>
+
 
       {/* ********************** Reset filter modal form***************************** */}
       <form action="" className={`set-filter ${displayFilterModal ? 'display-modal' : ''}`} onClick={(e) => e.stopPropagation()}>
@@ -285,7 +324,74 @@ function Table() {
                 </select>
             </div>
         </form>
+
+
     </div>
+        <div className="pagination-container">
+            {/* Left: Page size selector */}
+            <div className="pagination-left">
+                <span>Showing</span>
+                <select
+                    value={table.getState().pagination.pageSize}
+                    onChange={(e) => table.setPageSize(Number(e.target.value))}
+                    className="bg-gray-100 px-2 py-1 rounded"
+                >
+                    {[10, 25, 50, 100].map((size) => (
+                        <option key={size} value={size}>
+                            {size}
+                        </option>
+                    ))}
+                </select>
+                <span>out of {table.getFilteredRowModel().rows.length}</span>
+            </div>
+
+            {/* Right: Page navigation */}
+            <div className="pagination-right">
+                <button
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
+                  className="left-btn"
+                >
+                  <FaChevronLeft />
+                </button>
+
+                {Array.from({ length: table.getPageCount() }, (_, i) => i).map((page) => {
+                    const current = table.getState().pagination.pageIndex;
+                    if (
+                      page === 0 ||
+                      page === table.getPageCount() - 1 ||
+                      (page >= current - 1 && page <= current + 1)
+                    ) {
+                      return (
+                        <button
+                          key={page}
+                          onClick={() => table.setPageIndex(page)}
+                          className={` number ${
+                            current === page ? "current" : "not-current"
+                          }`}
+                        >
+                          {page + 1}
+                        </button>
+                      );
+                    } else if (
+                      (page === current - 2 || page === current + 2)
+                    ) {
+                      return <span key={page}>...</span>;
+                    }
+                    return null;
+                })}
+
+                <button
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
+                  className="right-btn"
+                >
+                  <FaChevronRight />
+                </button>
+            </div>
+        </div>
+    </div>
+    
   )
 }
 

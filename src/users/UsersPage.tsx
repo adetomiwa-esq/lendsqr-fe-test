@@ -4,7 +4,7 @@ import './UsersPage.scss'
 
 function UsersPage() {
   return (
-    <div className="users-page">
+    <div className="users-page hide-scroll-bar">
         <Table />
     </div>
   )

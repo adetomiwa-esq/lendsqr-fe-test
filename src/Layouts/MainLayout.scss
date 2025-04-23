@@ -1,0 +1,11 @@
+.main-outlet {
+    padding-top: 100px;
+    padding-left: 283px;
+  }
+
+
+  @media(max-width: 1140px) {
+    .main-outlet {
+        padding-left: 0;
+    }
+  }
