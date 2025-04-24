@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ColumnDef, createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getSortedRowModel,getPaginationRowModel, useReactTable } from '@tanstack/react-table'
 import "./Table.scss"
 import { FaEllipsisVertical } from 'react-icons/fa6'
 import { FiUserX } from 'react-icons/fi'
 import { GrUserExpert } from 'react-icons/gr'
 import { IoEyeOutline, IoFilter } from 'react-icons/io5'
-import usersData from '../../data/db.json'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { useNavigate } from "react-router-dom";
 
@@ -157,7 +156,7 @@ const saveDataToLocalStorage = (key: string, data: object | undefined) => {
 function Table() {
     const navigate = useNavigate()
 
-    const [data] = useState(usersData)
+    const [data, setData] = useState<User[]>([])
 
     const [globalFilter, setGlobalFilter] = useState("")
     const [pagination, setPagination] = useState({
@@ -202,6 +201,28 @@ function Table() {
         setDisplayFilterModal(true)
     }
 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        fetch('https://run.mocky.io/v3/8d7557ff-401b-447a-be6f-2d08a041ff12')
+          .then((res) => {
+            if (!res.ok) throw new Error('Failed to fetch users');
+            return res.json();
+          })
+          .then((data) => {
+            setData(data);
+            setLoading(false);
+          })
+          .catch((err) => {
+            console.error(err);
+            setError('Could not load users');
+            setLoading(false);
+          });
+      }, []);
+    
+      if (loading) return <p>Loading...</p>;
+      if (error) return <p>{error}</p>;
     
         
     
@@ -261,7 +282,7 @@ function Table() {
                                 <div className={`edit-user-status ${userId === row.original._id ? 'reveal-user-status-modal' : ''}`}>
                                     <div onClick={() => {
                                     
-                                        const selectedUser = usersData.find(x => x._id === row.original._id)
+                                        const selectedUser = data.find(x => x._id === row.original._id)
                                         saveDataToLocalStorage('userData', selectedUser)
                                         navigate('/dashboard/users/selected-user')
                                     }}>
