@@ -206,24 +206,23 @@ function Table() {
         
     
   return (
-    <div className="">
+    <div className="table-section">
+        <div className="table-overflow hide-scroll-bar">
 
-<div className='table-container'>
-        <table className="table">
-        <thead className="bg-[#F3F3F3]">
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id} className="table-head px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {/* {header.isPlaceholder
-                    ? null
-                    : header.column.columnDef.header} */}
-                    <div {...{
-                                                className: header.column.getCanSort()
-                                                ? "cursor-pointer select-none flex items-center"
-                                                : "",
-                                                onClick: header.column.getToggleSortingHandler()
-                                            }} onClick={(e) => {
+            <div className='table-container'>
+                <table className="table">
+                    <thead className="bg-[#F3F3F3]">
+                      {table.getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                          {headerGroup.headers.map((header) => (
+                            <th key={header.id} className="table-head px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              
+                                <div {...{
+                                            className: header.column.getCanSort()
+                                            ? "cursor-pointer select-none flex items-center"
+                                            : "",
+                                            onClick: header.column.getToggleSortingHandler()
+                                        }} onClick={(e) => {
                                                 e.stopPropagation()
                                                 showFilterModal()
                                             }}>
@@ -232,103 +231,101 @@ function Table() {
                                                         header.column.columnDef.header, header.getContext()
                                                     )
                                                 }
-                                            </div>
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody className="tb ">
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className='tb-row hover:bg-gray-50 border-b border-b-[#E4E4E4]'>
-              {
-                                    row.getVisibleCells().map((cell) => (
-                                        <td key={cell.id} className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500`}>
-                                            {
-                                                flexRender(cell.column.columnDef.cell, cell.getContext())
-                                            }
-                                        </td>
-                                    ))
-                                }
+                                </div>
+                            </th>
+                          ))}
+                        </tr>
+                      ))}
+                    </thead>
+                    <tbody className="tb ">
+                      {table.getRowModel().rows.map((row) => (
+                        <tr key={row.id} className='tb-row hover:bg-gray-50 border-b border-b-[#E4E4E4]'>
+                            {
+                                row.getVisibleCells().map((cell) => (
+                                    <td key={cell.id} className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500`}>
+                                        {
+                                            flexRender(cell.column.columnDef.cell, cell.getContext())
+                                        }
+                                    </td>
+                                ))
+                            }
 
-                                <td className='ellipsis-container' onClick={(e) => {
-                                    e.stopPropagation()
-                                }}>
-                                    <FaEllipsisVertical onClick={() => {
+                            <td className='ellipsis-container' onClick={(e) => {
+                                e.stopPropagation()
+                            }}>
+                                <FaEllipsisVertical onClick={() => {
+                                
+                                toggleUserEditModal(row.original._id)
+                                }} className='ellipsis' />
+                                {/* ******************* edit user status modal ********************* */}
+                                <div className={`edit-user-status ${userId === row.original._id ? 'reveal-user-status-modal' : ''}`}>
+                                    <div onClick={() => {
                                     
-                                    toggleUserEditModal(row.original._id)
-                                    }} className='ellipsis' />
-
-                                    {/* ******************* edit user status modal ********************* */}
-                                    <div className={`edit-user-status ${userId === row.original._id ? 'reveal-user-status-modal' : ''}`}>
-                                        <div onClick={() => {
-
-                                            const selectedUser = usersData.find(x => x._id === row.original._id)
-                                            saveDataToLocalStorage('userData', selectedUser)
-                                            navigate('/dashboard/users/selected-user')
-                                        }}>
-                                            <span><IoEyeOutline /></span>
-                                            <span>View Details</span>
-                                        </div>
-                                        <div>
-                                            <span><FiUserX /></span>
-                                            <span>Blacklist User</span>
-                                        </div>
-                                        <div>
-                                            <span><GrUserExpert /></span>
-                                            <span>Activate User</span>
-                                        </div>
+                                        const selectedUser = usersData.find(x => x._id === row.original._id)
+                                        saveDataToLocalStorage('userData', selectedUser)
+                                        navigate('/dashboard/users/selected-user')
+                                    }}>
+                                        <span><IoEyeOutline /></span>
+                                        <span>View Details</span>
                                     </div>
-                                </td>
-            </tr>
-          ))}
-        </tbody>
-
-        
-      </table>
-
-
-      {/* ********************** Reset filter modal form***************************** */}
-      <form action="" className={`set-filter ${displayFilterModal ? 'display-modal' : ''}`} onClick={(e) => e.stopPropagation()}>
-            <div className="data-container">
-                <label htmlFor="">Organization</label>
-                <select name="" id="" className="data-field">
-                    <option value="">Select</option>
-                </select>
+                                    <div>
+                                        <span><FiUserX /></span>
+                                        <span>Blacklist User</span>
+                                    </div>
+                                    <div>
+                                        <span><GrUserExpert /></span>
+                                        <span>Activate User</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                      ))}
+                    </tbody>  
+                </table>
+                  
+                  
+                  {/* ********************** Set filter form***************************** */}
+                <form action="" className={`set-filter ${displayFilterModal ? 'display-modal' : ''}`} onClick={(e) => e.stopPropagation()}>
+                    <div className="data-container">
+                        <label htmlFor="">Organization</label>
+                        <select name="" id="" className="data-field">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                
+                    <div className="data-container">
+                        <label htmlFor="">Username</label>
+                        <input type="text" name="" placeholder='User' className="data-field" id="" />
+                    </div>
+                
+                    <div className="data-container">
+                        <label htmlFor="">Email</label>
+                        <input type="email" name="" placeholder='Email' className="data-field" id="" />
+                    </div>
+                
+                    <div className="data-container">
+                        <label htmlFor="">Date</label>
+                        <input type="date" name="" placeholder='Date' className="data-field" id="" />
+                    </div>
+                
+                    <div className="data-container">
+                        <label htmlFor="">Phone Number</label>
+                        <input type="text" name="" placeholder='Phone Number' className="data-field" id="" />
+                    </div>
+                
+                    <div className="data-container">
+                        <label htmlFor="">Status</label>
+                        <select name="" id="" className="data-field">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </form>
+                  
+                  
             </div>
-
-            <div className="data-container">
-                <label htmlFor="">Username</label>
-                <input type="text" name="" placeholder='User' className="data-field" id="" />
-            </div>
-
-            <div className="data-container">
-                <label htmlFor="">Email</label>
-                <input type="email" name="" placeholder='Email' className="data-field" id="" />
-            </div>
-
-            <div className="data-container">
-                <label htmlFor="">Date</label>
-                <input type="date" name="" placeholder='Date' className="data-field" id="" />
-            </div>
-
-            <div className="data-container">
-                <label htmlFor="">Phone Number</label>
-                <input type="text" name="" placeholder='Phone Number' className="data-field" id="" />
-            </div>
-
-            <div className="data-container">
-                <label htmlFor="">Status</label>
-                <select name="" id="" className="data-field">
-                    <option value="">Select</option>
-                </select>
-            </div>
-        </form>
-
-
-    </div>
+        </div>
         <div className="pagination-container">
-            {/* Left: Page size selector */}
+                {/* Left: Page size selector */}
             <div className="pagination-left">
                 <span>Showing</span>
                 <select
@@ -336,16 +333,16 @@ function Table() {
                     onChange={(e) => table.setPageSize(Number(e.target.value))}
                     className="bg-gray-100 px-2 py-1 rounded"
                 >
-                    {[10, 25, 50, 100].map((size) => (
-                        <option key={size} value={size}>
-                            {size}
-                        </option>
-                    ))}
+                        {[10, 25, 50, 100].map((size) => (
+                            <option key={size} value={size}>
+                                {size}
+                            </option>
+                        ))}
                 </select>
                 <span>out of {table.getFilteredRowModel().rows.length}</span>
             </div>
-
-            {/* Right: Page navigation */}
+                    
+                {/* Right: Page navigation */}
             <div className="pagination-right">
                 <button
                   onClick={() => table.previousPage()}
@@ -354,7 +351,7 @@ function Table() {
                 >
                   <FaChevronLeft />
                 </button>
-
+                    
                 {Array.from({ length: table.getPageCount() }, (_, i) => i).map((page) => {
                     const current = table.getState().pagination.pageIndex;
                     if (
@@ -391,7 +388,6 @@ function Table() {
             </div>
         </div>
     </div>
-    
   )
 }
 

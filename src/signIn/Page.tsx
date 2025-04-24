@@ -1,13 +1,19 @@
 
 import './signIn.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import banner from "../assets/sign-in.svg";
 import logo from '../assets/Group.svg'
 import { useState } from 'react';
 
 function Page() {
 
+    const navigate = useNavigate()
+
     const [displayPassword, setDisplayPassword] = useState<boolean>(false)
+
+    function signInFormSubmit(){
+        navigate("/dashboard/users")
+    }
   return (
     <main className="sign-in">
         <section className="left">
@@ -15,15 +21,15 @@ function Page() {
             <img src={banner} alt="" className="banner" />
         </section>
         <section className="right">
-            <form action="" className="form">
+            <form action="" className="form" onSubmit={signInFormSubmit}>
                 <h1>Welcome</h1>
                 <h4>Enter details to login</h4>
 
                 <div className="input-container">
-                    <input type="text" name="" placeholder='Email' id="" />
+                    <input type="text" name="" placeholder='Email' id="" required />
                 </div>
                 <div className="input-container password-cont">
-                    <input type={displayPassword ? 'text' : 'password'} placeholder='Password' name="" id="" />
+                    <input type={displayPassword ? 'text' : 'password'} placeholder='Password' name="" id="" required />
                     <span className="toggle" onClick={() => setDisplayPassword(prev => !prev)}>{displayPassword ? 'HIDE' : 'SHOW'}</span>
                 </div>
 

@@ -15,25 +15,29 @@
   
     &.Active {
       background-color: #e6ffed;
-      color: #27ae60;
+      color: #39CD62;
     }
   
     &.Inactive {
-      background-color: #8c92a6;
+      background-color: #c4cbe0;
       color: $text-color;
     }
   
     &.Pending {
       background-color: #fff9e6;
-      color: #f1c40f;
+      color: #E9B200;
     }
   
     &.Blacklisted {
-      background-color: #f9e6ff;
-      color: #9b59b6;
+      background-color: #f1c6d1;
+      color: #E4033B;
     }
   }
   
+.table-overflow {
+    overflow-x: scroll;
+    width: 100%;
+}
 
 .table-container {
     padding: 20px;
@@ -226,5 +230,19 @@
     .number {
         border: none;
         background-color: transparent;
+    }
+}
+
+@media(max-width: 400px){
+    .pagination-container {
+        .pagination-left {
+            select {
+                width: 40px;
+            }
+        }
+
+        .pagination-right {
+            gap: 3px;
+        }
     }
 }
