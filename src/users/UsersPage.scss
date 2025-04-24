@@ -2,9 +2,62 @@
 
 .users-page {
     color: $text-color;
-    padding: 20px 30px 20px 30px;
-    width: 100%;
-    overflow-x: scroll;
+    padding: 40px 40px 20px 40px;
     min-height: 600px;
     background-color: $bg-color;
+}
+
+.classification-header {
+    font-size: 24px;
+    font-weight: 500;
+    color: $primary-color;
+    margin-bottom: 30px;
+}
+
+.data-boxes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    row-gap: 20px;
+}
+
+.data-box {
+    background: white;
+    width: 22%;
+    border-radius: 4px;
+    padding: 24px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    box-shadow: 3px 3px 3px 3px #0000000A;
+
+    .icon-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .title {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .count {
+        color: $primary-color;
+        font-size: 24px;
+        font-weight: 600;
+    }
+}
+
+@media(max-width: 850px){
+    .data-box {
+        width: 30%;
+    }
+}
+
+@media(max-width: 650px){
+    .data-box {
+        width: 48%;
+    }
 }
