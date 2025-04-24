@@ -7,8 +7,11 @@ import { FaRegBell, FaSortDown } from 'react-icons/fa';
 import './Navbar.scss'
 import { HiBars3 } from 'react-icons/hi2';
 
+type Props = {
+  setDisplaySideBar: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-function Navbar({setDisplaySideBar}) {
+function Navbar({setDisplaySideBar} : Props) {
     
   return (
     <header className="header">

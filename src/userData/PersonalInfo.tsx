@@ -1,6 +1,6 @@
 
-interface Props {
-    savedData: {
+type Props = {
+    savedData?: {
     _id?: string;
     company?: string,
     username?: string;
