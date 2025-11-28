@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #FBFBFB;
+}
+
+.page-content {
+    padding-top: 100px;
+    padding-left: 283px;
+}
+
+@media(max-width: 1100px){
+    .page-content {
+        padding-left: 0;
+    }
+}
+
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scroll-bar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
