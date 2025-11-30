@@ -1,0 +1,292 @@
+@import "../abstracts/variables";;
+
+.details-body {
+    padding: 40px 20px;
+
+    .top-section {
+        margin-bottom: 30px;
+    }
+
+    .back {
+        font-family: Work Sans;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0px;
+        color: $text-gray;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        width: fit-content;
+        margin-bottom: 10px;
+    }
+
+    .details-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .details-header h3 {
+        color: #213F7D;
+        font-family: Work Sans;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 100%;
+        letter-spacing: 0px;
+    }
+
+    .buttons {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        button {
+            background-color: transparent;
+            width: 170px;
+            height: 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 100%;
+            letter-spacing: 10%;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .blacklist {
+            border: 1px solid #E4033B;
+            color: #E4033B;
+        }
+
+        .activate {
+            border: 1px solid #39CDCC;
+            color: #39CDCC;
+        }
+    }
+
+    .overall-details {
+        background: #FFFFFF;
+        border: 1px solid #213F7D0F;
+        box-shadow: 3px 5px 20px 0px #0000000A;
+        // height: 210px;
+        border-radius: 4px;
+        padding: 20px;
+        padding-bottom: 0;
+
+        .details {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .name, .tier, .account {
+            padding: 10px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            justify-content: center;
+            height: 80px;
+        }
+
+        .name h4 {
+                font-weight: 500;
+                font-size: 22px;
+                line-height: 100%;
+                letter-spacing: 0px;
+                color: $text-blu;
+            }
+
+        .name p {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 100%;
+                letter-spacing: 0px;
+                color: $text-gray;
+        }
+
+        .tier {
+            border: 1px solid rgba(84, 95, 125, 20%);
+            border-top: 0;
+            border-bottom: 0;
+
+            h5 {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 100%;
+                letter-spacing: 0px;
+                color: $text-gray;
+            }
+        }
+
+        .account h4 {
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 100%;
+            letter-spacing: 0px;
+            color: $text-blu;
+        }
+
+        .account p {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 100%;
+            letter-spacing: 0px;
+            color: $text-blu;
+        }
+    }
+
+
+    // personal information section
+    .personal-info {
+        background: #FFFFFF;
+        border: 1px solid #213F7D0F;
+        box-shadow: 3px 5px 20px 0px #0000000A;
+        padding: 40px 20px;
+        border-radius: 4px;
+    }
+
+    .info-box {
+        border-bottom: 1px solid rgba(33, 63, 125, 10%);
+        margin-bottom: 20px;
+
+        h3 {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: 0px;
+            color: $text-blu;
+            margin-bottom: 30px;
+        }
+    }
+
+    .details-list {
+        list-style: none;
+        padding-bottom: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 36px;
+
+        .detail {
+            width: 20%;
+        }
+
+        h5 {
+            color: $text-gray;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 100%;
+            letter-spacing: 0px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: 0px;
+            color: $text-gray;
+        }
+    }
+
+    .info-box:nth-child(2) .details-list {
+        .detail {
+            width: 25%;
+        }
+    }
+
+    .info-box:nth-child(4) {
+        border-bottom: 0;
+    }
+}
+
+@media(max-width: 1100px){
+    .details-body {
+        .info-box .detail {
+            width: 33.33%;
+        }
+
+        .info-box:nth-child(2) .details-list {
+            .detail {
+                width: 33.33%;
+            }
+        }
+    }
+}
+
+@media(max-width: 650px){
+    .details-body {
+        padding: 30px 10px;
+
+        .details-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 18px;
+        }
+
+        .buttons {
+            margin-left: auto;
+
+            button {
+                width: 140px;
+            }
+        }
+
+        .overall-details {
+            padding: 10px;
+            padding-bottom: 0;
+        }
+
+        .details {
+            flex-wrap: wrap;
+
+            .name, .tier, .account {
+                text-align: center;
+                width: 30%;
+                padding: 5px;
+            }
+
+            .account {
+                width: 40%;
+            }
+
+            .profile-p-container {
+            width: 100%;
+        }
+        }
+
+
+
+        .info-box .detail {
+            width: 50%;
+        }
+
+        .info-box:nth-child(2) .details-list {
+            .detail {
+                width: 50%;
+            }
+        }
+    }
+}
+
+
+@media(max-width: 380px){
+    .details-body {
+        .info-box .detail {
+            width: 100%;
+        }
+
+        .info-box:nth-child(2) .details-list {
+            .detail {
+                width: 100%;
+            }
+        }
+    }
+}
