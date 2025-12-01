@@ -18,7 +18,12 @@ export type User =  {
     registered?: string;
     phone: string;
     status: string;
-    guarantor : {id: number, name: string}
+    guarantor : {id: number, name: string};
+    isActive : boolean;
+    gender : string;
+    balance: string;
+    address: string;
+    age: number;
 }
 
 const columnHelper = createColumnHelper<User>()
@@ -50,7 +55,8 @@ const columns = [
 
             return (
                 <span>
-                    {mail.length > 15 ? mail.slice(0,14) + "..." : mail}
+                    {/* {mail.length > 15 ? mail.slice(0,14) + "..." : mail} */}
+                    {mail}
                 </span>
             )
         },
@@ -248,11 +254,11 @@ function Table() {
 
                 <div className='table-container'>
                     <table className="table">
-                        <thead className="bg-[#F3F3F3]">
+                        <thead className="">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <tr key={headerGroup.id}>
                             {headerGroup.headers.map((header) => (
-                                <th key={header.id} className="table-head px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th key={header.id} className="table-head">
                                 
                                     <div {...{
                                                 className: header.column.getCanSort()

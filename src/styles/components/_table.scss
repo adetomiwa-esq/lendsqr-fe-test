@@ -16,6 +16,7 @@
 
     .table {
         width: 100%;
+        min-width: 950px;
         text-align: center;
         border-collapse: collapse;
     }
@@ -136,6 +137,11 @@
         background-color: #FFFFFF;
         padding: 25px 15px;
         padding-bottom: 15px;
+        display: none;
+    }
+
+    .display-modal {
+        display: block;
     }
 
     .data-container {

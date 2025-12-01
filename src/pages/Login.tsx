@@ -70,9 +70,9 @@ function Login() {
 
 
   return (
-    <main id="sign-in">
+    <main id="log-in">
       <img src={logo} alt="logo" className="logo-img" />
-      <div className="sign-in-main">
+      <div className="log-in-main">
         <section className="left">
             <img src={banner} alt="" className="banner" />
         </section>
