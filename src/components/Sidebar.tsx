@@ -1,10 +1,15 @@
 import {} from 'react'
 import { FaAngleDown } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import type { RootState } from '../features/store'
 
 function Sidebar() {
+    const sidebarState = useSelector((state: RootState) => state.asideSlice )
+    console.log(sidebarState);
+    
   return (
-    <aside className="sidebar hide-scroll-bar">
+    <aside className={`sidebar hide-scroll-bar ${sidebarState ? "reveal-sidebar" : ""}`}>
         <NavLink to="/" className="nav-link top-side">
             <span><img src="/images/briefcase.svg" alt="icon" /></span>
             <span>Switch Organization</span>

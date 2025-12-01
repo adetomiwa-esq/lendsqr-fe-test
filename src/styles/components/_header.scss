@@ -17,6 +17,12 @@ header {
     height: 100px;
     padding: 0 30px;
 
+    .mobile-toggle-bar {
+        margin-right: 10px;
+        display: none;
+        cursor: pointer;
+    }
+
     .logo {
         width: 144.8px;
         height: 30px;
@@ -32,7 +38,8 @@ header {
         border: 1px solid rgba(33, 63, 125, 20%);
         background: #FFFFFF;
         overflow: hidden;
-        margin-left: 30px;
+        margin-left: 90px;
+        margin-right: 10px;
 
         input {
             width: calc(400px - 56px);
@@ -73,6 +80,7 @@ header {
             justify-content: center;
             background: #39CDCC;
             color: #FFFFFF;
+            cursor: pointer;
         }
     }
 
@@ -81,37 +89,94 @@ header {
         display: flex;
         align-items: center;
         gap: 8px;
+    }
 
-        .doc-link {
-            font-family: Roboto;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 100%;
-            letter-spacing: 0%;
-            text-decoration: underline;
-            text-decoration-style: solid;
-            text-decoration-thickness: 0%;
-            color: $text-blu;
+    .doc-link {
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-decoration: underline;
+        text-decoration-style: solid;
+        text-decoration-thickness: 0%;
+        color: $text-blu;
+    }
+
+    .bell {
+        margin-left: 16px;
+        color: $text-blu;
+    }
+
+    .username {
+        font-family: Work Sans;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0px;
+        color: $text-blu;
+        margin-left: 16px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .user-pic {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+    }
+}
+
+@media(max-width: 1100px){
+    .navbar {
+        .search-box {
+            margin-left: 30px;
         }
 
-        .bell {
-            margin-left: 16px;
+        .mobile-toggle-bar {
+            display: block;
         }
+    }
+}
 
-        .username {
-            font-family: Work Sans;
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 100%;
-            letter-spacing: 0px;
-            color: $text-blu;
-            margin-left: 16px;
+@media(max-width: 700px){
+    .navbar {
+        padding: 0 15px;
+        .logo {
+            display: none;
         }
 
         .user-pic {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
+            display: none;
+        }
+
+        .search-box {
+            margin-left: 10px;
+        }
+
+        .right-nav {
+            gap: 5px;
+        }
+
+        .username {
+            margin-left: 6px;
+        }
+    }
+}
+
+@media(max-width: 500px) {
+    .navbar {
+        .search-box {
+            width: 200px;
+
+            input {
+                width: calc(200px - 50px);
+                padding: 0 5px;
+            }
+        }
+        .doc-link {
+            display: none;
         }
     }
 }

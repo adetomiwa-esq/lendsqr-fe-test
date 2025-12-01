@@ -10,14 +10,15 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { useNavigate } from "react-router-dom";
 
 
-type User =  {
-    _id?: string;
-    company?: string,
-    username?: string;
+export type User =  {
+    _id: string;
+    company: string,
+    username: string;
     email: string;
     registered?: string;
-    phone?: string;
-    status?: string;
+    phone: string;
+    status: string;
+    guarantor : {id: number, name: string}
 }
 
 const columnHelper = createColumnHelper<User>()
@@ -299,7 +300,7 @@ function Table() {
                                         
                                             const selectedUser = data.find(x => x._id === row.original._id)
                                             saveDataToLocalStorage('userData', selectedUser)
-                                            navigate('/dashboard/users/selected-user')
+                                            navigate(`/details/${row.original._id}`)
                                         }}>
                                             <span><IoEyeOutline /></span>
                                             <span>View Details</span>

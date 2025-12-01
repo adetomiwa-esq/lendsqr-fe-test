@@ -53,6 +53,24 @@
     .top-side {
         opacity: 1;
     }
+
+
+
+}
+
+
+/* Show scrollbar on hover */
+.sidebar.hide-scroll-bar:hover {
+  scrollbar-width: thin; /* Firefox */
+}
+
+.sidebar.hide-scroll-bar:hover::-webkit-scrollbar {
+  width: 6px; /* any size you want */
+}
+
+.sidebar.hide-scroll-bar:hover::-webkit-scrollbar-thumb {
+  background: #c1c1c1; /* visible thumb */
+  border-radius: 4px;
 }
 
 
@@ -60,5 +78,10 @@
 @media(max-width: 1100px){
     .sidebar {
         left: -283px;
+        transition: all ease-in-out 300ms 300ms;
+    }
+
+    .reveal-sidebar {
+        left: 0;
     }
 }

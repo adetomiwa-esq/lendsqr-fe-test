@@ -17,21 +17,17 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 20px;
+        row-gap: 12px;
+        flex-wrap: wrap;
     }
 
     .box {
-        // border-width: 0px, 0px, 0px, 0px;
-        // border-style: solid;
-        // border-color: #213F7D0F;
         box-shadow: 3px 5px 20px 0px #0000000A;
-
         border: 1px solid #213F7D0F;
         background: #FFFFFF;
         width: 24%;
-        // width: 240px;
         display: flex;
         flex-direction: column;
-        // height: 160px;
         border-radius: 4px;
         gap: 10px;
         padding: 20px 5px 30px 25px;
@@ -58,5 +54,13 @@
         font-size: 24px;
         line-height: 100%;
         letter-spacing: 0%;
+    }
+}
+
+@media(max-width: 650px) {
+    #users-page {
+        .box {
+            width: 49%;
+        }
     }
 }

@@ -1,9 +1,18 @@
-import {} from 'react'
+import { useState } from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import { Link } from 'react-router-dom'
+import type { User } from '../components/Table'
 
 export default function GeneralDetails() {
+
+    const [currentUser] = useState<User | null>(() => {
+  const item = localStorage.getItem("userData");
+  return item ? (JSON.parse(item) as User) : null;
+});
+
+
+
   return (
     <div>
         <Header />
@@ -12,7 +21,7 @@ export default function GeneralDetails() {
         <main className="page-content">
             <div className="details-body">
                 <section className="top-section">
-                    <Link to="" className='back'>
+                    <Link to="/users" className='back'>
                         <img src="/images/left.svg" alt="" /> 
                         <span>Back to Users</span>
                     </Link>
@@ -38,19 +47,44 @@ export default function GeneralDetails() {
                             </div>
 
                             <div className="name">
-                                <h4>{`Grace Effiom`}</h4>
+                                <h4>{currentUser?.username}</h4>
                                 <p>LSQFf587g90</p>
                             </div>
 
                             <div className="tier">
                                 <h5>User’s Tier</h5>
-                                <div className="stars"></div>
+                                <div className="stars">
+                                    <img src="/images/star-full.svg" alt="" />
+                                    <img src="/images/star.svg" alt="" />
+                                    <img src="/images/star.svg" alt="" />
+                                </div>
                             </div>
 
                             <div className="account">
-                                <h4>₦200,000.00</h4>
+                                <h4>₦{currentUser?.balance.slice(1)}</h4>
                                 <p><span>9912345678</span>/<span>Providus Bank</span></p>
                             </div>
+                        </div>
+
+                        <div className="sub-links hide-scroll-bar">
+                            <li className="link">
+                                <Link to="" className='active'>General Details</Link>
+                            </li>
+                            <li className="link">
+                                <Link to="">Documents</Link>
+                            </li>
+                            <li className="link">
+                                <Link to="">Bank Details</Link>
+                            </li>
+                            <li className="link">
+                                <Link to="">Loans</Link>
+                            </li>
+                            <li className="link">
+                                <Link to="">Savings</Link>
+                            </li>
+                            <li className="link">
+                                <Link to="">App and System</Link>
+                            </li>
                         </div>
                     </div>
                 </section>
@@ -62,27 +96,27 @@ export default function GeneralDetails() {
                         <ul className="details-list">
                             <li className='detail'>
                                 <h5>full Name</h5>
-                                <p>Grace Effiom</p>
+                                <p>{currentUser?.username}</p>
                             </li>
 
                             <li className='detail'>
                                 <h5>Phone Number</h5>
-                                <p>07060780922</p>
+                                <p>{currentUser?.phone}</p>
                             </li>
 
                             <li className='detail'>
                                 <h5>Email Address</h5>
-                                <p>grace@gmail.com</p>
+                                <p>{currentUser?.email}</p>
                             </li>
 
                             <li className='detail'>
                                 <h5>Bvn</h5>
-                                <p>07060780922</p>
+                                <p>{currentUser?.phone}</p>
                             </li>
 
                             <li className='detail'>
                                 <h5>Gender</h5>
-                                <p>Female</p>
+                                <p className='gender'>{currentUser?.gender}</p>
                             </li>
 
                             <li className='detail'>
@@ -128,7 +162,7 @@ export default function GeneralDetails() {
 
                             <li className='detail'>
                                 <h5>office email</h5>
-                                <p>grace@lendsqr.com</p>
+                                <p>{currentUser?.email}</p>
                             </li>
 
                             <li className='detail'>
@@ -149,17 +183,17 @@ export default function GeneralDetails() {
                         <ul className="details-list">
                             <li className='detail'>
                                 <h5>Twitter</h5>
-                                <p>@grace_effiom</p>
+                                <p>@{currentUser?.username}</p>
                             </li>
 
                             <li className='detail'>
                                 <h5>Facebook</h5>
-                                <p>Grace Effiom</p>
+                                <p>{currentUser?.username}</p>
                             </li>
 
                             <li className='detail'>
                                 <h5>Instagram</h5>
-                                <p>@grace_effiom</p>
+                                <p>@{currentUser?.username}</p>
                             </li>
                         </ul>
                     </div>
@@ -170,7 +204,7 @@ export default function GeneralDetails() {
                         <ul className="details-list">
                             <li className='detail'>
                                 <h5>full Name</h5>
-                                <p>Debby Ogana</p>
+                                <p>{currentUser?.guarantor.name}</p>
                             </li>
 
                             <li className='detail'>
@@ -180,12 +214,12 @@ export default function GeneralDetails() {
 
                             <li className='detail'>
                                 <h5>Email Address</h5>
-                                <p>debby@gmail.com</p>
+                                <p>{currentUser?.guarantor.name.split(' ')[0]}@gmail.com</p>
                             </li>
 
                             <li className='detail'>
                                 <h5>Relationship</h5>
-                                <p>Sister</p>
+                                <p>Sibling</p>
                             </li>
                         </ul>
                     </div>
