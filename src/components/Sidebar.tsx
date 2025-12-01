@@ -15,7 +15,7 @@ function Sidebar() {
             <span>Switch Organization</span>
             <span><FaAngleDown /></span>
         </NavLink>
-        <NavLink to="/" className="nav-link">
+        <NavLink to="/" className="nav-link dashboard-link">
             <span><img src="/images/home.svg" alt="icon" /></span>
             <span>Dashboard</span>
         </NavLink>
