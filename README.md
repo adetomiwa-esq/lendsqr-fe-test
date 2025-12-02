@@ -1,73 +1,125 @@
-# React + TypeScript + Vite
+# 📘 **Lendsqr**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The **Lendsqr Admin Dashboard** is an admin platform that allows lenders
+to effectively reach and manage their customers. The dashboard includes
+a user management system where admins can view all users, inspect the
+details of a specific user.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 **Features**
 
-## React Compiler
+- 🔐 **Authentication**\
+  Simple form-based authentication using Regex validation.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📊 **React Table Integration**\
+  A powerful and searchable table UI that displays user data fetched
+  from the API endpoint\
+  `https://lendsqr-users.free.beeceptor.com/users`
 
-## Expanding the ESLint configuration
+- 💾 **Persistent User Details**\
+  Selected user information persists on the **User Details** page
+  using **Local Storage**.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ⚛️ **Modern UI Structure**\
+  Built with React 19, TypeScript, and SCSS for clean and scalable
+  styling.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- 🧰 **Global State Management**\
+  Managed using **Redux Toolkit**, ensuring predictable and
+  maintainable state flow.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🛠️ **Tech Stack**
+
+### **Frontend**
+
+- **React 19.2.0**
+- **TypeScript**
+- **SCSS**
+- **Redux Toolkit** (State Management)
+- **React Table**
+
+### **API**
+
+- **Mock API**: `https://lendsqr-users.free.beeceptor.com/users`\
+  Used for demo data to simulate real customer records.
+
+---
+
+## 📁 **Folder Structure**
+
+    src/
+     ├── assets/
+     ├── components/
+     │    ├── Header.tsx
+     │    ├── Sidebar.tsx
+     │    ├── Table.tsx
+     │
+     ├── features/
+     │    |── SidebarSlice.ts
+     │    ├── store.ts
+     │
+     ├── pages/
+     │    ├── Login.tsx
+     │    ├── Users.tsx
+     │    └── GeneralDetails.tsx
+     ├── styles/
+     │    ├── abstracts/
+     │    ├── base/
+     │    ├── components/
+     │    ├── pages/
+     |    ├── fonts.scss
+     │    └── main.scss
+     │
+     ├── App.tsx
+     |── main.tsx
+     ├── public/
+
+---
+
+## ⚙️ **Installation & Setup**
+
+### 1️⃣ Clone Repository
+
+```bash
+git clone https://github.com/adetomiwa-esq/lendsqr-fe-test.git
+cd lendsqr-fe-test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2️⃣ Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3️⃣ Run Development Server
+
+```bash
+npm run dev
+```
+
+### 4️⃣ Build for Production
+
+```bash
+npm run build
+```
+
+```
+
+------------------------------------------------------------------------
+
+## 🔧 **Environment Variables**
+
+(API is public mock data.)
+
+
+
+------------------------------------------------------------------------
+
+## 👤 **Author**
+
+**Akinola Kehinde (Adetomiwa-esq)**\
+GitHub: https://github.com/Adetomiwa-esq
 ```
