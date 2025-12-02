@@ -29,7 +29,7 @@ function Login() {
 
     const validate = () => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      const passwordRegex = /^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{6,20}$/
+      const passwordRegex = /^[A-Za-z0-9]+$/
 
       
       const newErrors = {
@@ -46,7 +46,7 @@ function Login() {
       if(!formData.password){
         newErrors.password = "password is required"
       } else if(!passwordRegex.test(formData.password)){
-        newErrors.password = "password will take letters and numbers"
+        newErrors.password = "password will only take letters or numbers"
       }
 
       setError(newErrors)
