@@ -52,6 +52,14 @@
         padding: 15px 0;
     }
 
+    .tb-row td:nth-child(1) {
+        text-transform: lowercase;
+    }
+
+    .tb-row td:nth-child(1)::first-letter{
+        text-transform: uppercase;
+    }
+
     .edit-user-status {
         border-width: 0px, 0px, 0px, 0px;
         border-style: solid;
@@ -157,6 +165,17 @@
         display: block;
         margin-bottom: 8px;
 
+    }
+
+    .date-box {
+        position: relative;
+
+        img {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 8px;
+        }
     }
 
     .data-field {

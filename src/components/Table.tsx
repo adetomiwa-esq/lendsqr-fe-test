@@ -352,7 +352,10 @@ function Table() {
                     
                         <div className="data-container">
                             <label htmlFor="">Date</label>
-                            <input type="date" name="" placeholder='Date' className="data-field" id="" />
+                            <div className="date-box">
+                                <input type="text" name="" placeholder='Date' className="data-field" id="" />
+                                <img src="/images/calendar.svg" alt="" />
+                            </div>
                         </div>
                     
                         <div className="data-container">

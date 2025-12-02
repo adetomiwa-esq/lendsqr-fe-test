@@ -153,6 +153,21 @@ function Sidebar() {
                     <span>Audit Logs</span>
                 </NavLink>
             </li>
+            <li className="link-li">
+                <NavLink to="/" className="nav-link">
+                    <span><img src="/images/tire.svg" alt="icon" /></span>
+                    <span>Systems Messages</span>
+                </NavLink>
+            </li>
+
+            <div className="bottom-link">
+                <li className="link-li">
+                    <NavLink to="/" className="nav-link">
+                        <span><img src="/images/sign-out.svg" alt="icon" /></span>
+                        <span>Logout</span>
+                    </NavLink>
+                </li>
+            </div>
         </ul>
     </aside>
   )

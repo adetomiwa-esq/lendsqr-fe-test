@@ -214,7 +214,7 @@ export default function GeneralDetails() {
 
                             <li className='detail'>
                                 <h5>Email Address</h5>
-                                <p>{currentUser?.guarantor.name.split(' ')[0]}@gmail.com</p>
+                                <p>{currentUser?.guarantor.name.split(' ')[0].toLowerCase()}@gmail.com</p>
                             </li>
 
                             <li className='detail'>
