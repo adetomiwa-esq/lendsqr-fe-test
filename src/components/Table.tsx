@@ -6,7 +6,7 @@ import { FaEllipsisVertical } from 'react-icons/fa6'
 import { FiUserX } from 'react-icons/fi'
 import { GrUserExpert } from 'react-icons/gr'
 import { IoEyeOutline, IoFilter } from 'react-icons/io5'
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { FaChevronLeft, FaChevronRight, FaSpinner } from 'react-icons/fa'
 import { useNavigate } from "react-router-dom";
 
 
@@ -239,7 +239,11 @@ function Table() {
           });
       }, []);
     
-      if (loading) return <p>Loading...</p>;
+      if (loading) return <div className='spinner-container'>
+        <i className="spinner">
+            <FaSpinner />
+        </i>
+      </div>;
       if (error) return <p>{error}</p>;
     
         
